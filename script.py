@@ -9,6 +9,7 @@ Url Are beging ip and ss config will created with IP of url
 
 please wait...
 ''')
+# -------- Create ss configs --------- #
 
 PORT = '48597'
 CONFIGS_PASSWORD = 'eazhT9GXDtuwZMDVHnF2wk8G'
@@ -33,5 +34,21 @@ with open('list-of-url.txt', 'r', encoding="utf-8") as urls:
             ssconf.write(SS)
 
 
+
 print('--------')
 print('Finisehd')
+
+
+# -------- Create Base64 for server configs --------- #
+
+from time import gmtime, strftime
+
+text = open('SS-Config.txt','r')
+sample_string_bytes = text.read().encode("utf-8")
+base64_bytes = base64.b64encode(sample_string_bytes)
+base64_string = base64_bytes.decode("utf-8")
+with open('SS','w') as f:
+    f.write(base64_string)
+
+os.system(f'git commit -am \"Latest Update: {strftime("%Y-%m-%d %H%M%S %z", gmtime())}\"')
+os.system('git push origin main')
