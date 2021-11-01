@@ -1,4 +1,5 @@
 from os.path import exists as file_exists
+import urllib.parse
 import socket
 import os
 import base64
@@ -25,6 +26,7 @@ with open('list-of-url.txt', 'r', encoding="utf-8") as urls:
         Flag = flag.flag(Name.split('-')[0])
         with open('SS-Config.txt', 'a', encoding="utf-8") as ssconf:
             SS = f"ss://{base64_string}@{IP_addres}:{PORT}#{Flag}%20{Name}\n"
+            SS = urllib.parse.quote(SS)
             ssconf.write(SS)
 
 # -------- {Create Base64 for server configs} --------- #
