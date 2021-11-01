@@ -25,8 +25,7 @@ with open('list-of-url.txt', 'r', encoding="utf-8") as urls:
         IP_addres = socket.gethostbyname(url.strip())
         Flag = flag.flag(Name.split('-')[0])
         with open('SS-Config.txt', 'a', encoding="utf-8") as ssconf:
-            SS = f"ss://{base64_string}@{IP_addres}:{PORT}#{Flag}%20{Name}"
-            SS = urllib.parse.quote(SS)
+            SS = f"ss://{base64_string}@{IP_addres}:{PORT}#{urllib.parse.quote(Flag)}%20{Name}"
             ssconf.write(SS + '\n')
 
 # -------- {Create Base64 for server configs} --------- #
